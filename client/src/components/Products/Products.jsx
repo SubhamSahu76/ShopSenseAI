@@ -21,11 +21,11 @@ const Products = ({ products, innerPage, headingText }) => {
             {!innerPage && <div className="sec-heading">{headingText}</div>}
             <div className={`products ${innerPage ? "innerPage" : ""}`}>
                 {/* {console.log(products)} */}
-                {products.data?.map((item, k) => (
+                {products.map((item, k) => (
                     <Product
                         key={k}
-                        id={item?.id}
-                        data={item?.attributes}
+                        id={k}
+                        data={item}
                     />
                 ))}
             </div>

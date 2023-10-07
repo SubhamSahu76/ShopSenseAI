@@ -3,6 +3,8 @@ import { Context } from "../../utils/context";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import RelatedProducts from "./RelatedProducts/RelatedProducts";
+import products from "../../data/products.js"
+
 import {
     FaFacebookF,
     FaTwitter,
@@ -17,7 +19,8 @@ const SingleProduct = () => {
     const [quantity, setQuantity] = useState(1);
     const { id } = useParams();
     const { handleAddToCart } = useContext(Context);
-    const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
+    console.log("id" , id);
+    const product = products[id - 1];
 
     const decrement = () => {
         setQuantity((prevState) => {
@@ -29,25 +32,19 @@ const SingleProduct = () => {
         setQuantity((prevState) => prevState + 1);
     };
 
-    if (!data) return;
-    const product = data?.data?.[0]?.attributes;
-
     return (
         <div className="single-product-main-content">
             <div className="layout">
                 <div className="single-product-page">
                     <div className="left">
                         <img
-                            src={
-                                process.env.REACT_APP_STRIPE_APP_DEV_URL +
-                                product.image.data[0].attributes.url
-                            }
+                            src={`/assets/products/speaker-prod-${id % 5}.webp`}
                         />
                     </div>
                     <div className="right">
                         <span className="name">{product.title}</span>
                         <span className="price">&#8377;{product.price}</span>
-                        <span className="desc">{product.description}</span>
+                        <span className="desc">{product.desc}</span>
 
                         <div className="cart-buttons">
                             <div className="quantity-buttons">
@@ -58,7 +55,7 @@ const SingleProduct = () => {
                             <button
                                 className="add-to-cart-button"
                                 onClick={() => {
-                                    handleAddToCart(data?.data?.[0], quantity);
+                                    handleAddToCart(product[0], quantity);
                                     setQuantity(1);
                                 }}
                             >
@@ -69,7 +66,7 @@ const SingleProduct = () => {
 
                         <span className="divider" />
                         <div className="info-item">
-                            <span className="text-bold">
+                            {/* <span className="text-bold">
                                 Category:{" "}
                                 <span>
                                     {
@@ -77,7 +74,7 @@ const SingleProduct = () => {
                                             .title
                                     }
                                 </span>
-                            </span>
+                            </span> */}
                             <span className="text-bold">
                                 Share:
                                 <span className="social-icons">
@@ -91,10 +88,10 @@ const SingleProduct = () => {
                         </div>
                     </div>
                 </div>
-                <RelatedProducts
+                {/* <RelatedProducts
                     productId={id}
                     categoryId={product.categories.data[0].id}
-                />
+                /> */}
             </div>
         </div>
     );

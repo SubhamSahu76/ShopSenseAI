@@ -17,18 +17,14 @@ const Category = ({ categories }) => {
     return (
         <div className="shop-by-category">
             <div className="categories">
-                {categories?.data?.map((item) => (
+                {categories.map((item, k) => (
                     <div
                         key={item.id}
                         className="category"
-                        onClick={() => navigate(`/category/${item.id}`)}
+                        // onClick={() => navigate(`/category/${k}`)}
                     >
-                        {console.log(item)}
                         <img
-                            src={
-                                process.env.REACT_APP_STRIPE_APP_DEV_URL +
-                                item?.attributes?.img?.data?.attributes?.url
-                            }
+                            src={`/assets/category/cat-${k+1}.jpg`}
                             alt="alt"
                         />
                     </div>

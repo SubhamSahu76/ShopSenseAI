@@ -5,26 +5,28 @@ import Category from "./Category/Category";
 import Products from "../Products/Products";
 import { fetchDataFromApi } from "../../utils/api";
 import { Context } from "../../utils/context";
+import products from "../../data/products.js"
+import categories from "../../data/categories.js"
 
 const Home = () => {
-    const { products, setProducts, categories, setCategories } =
-        useContext(Context);
-    useEffect(() => {
-        getProducts();
-        getCategories();
-    }, []);
+    // const { products, setProducts, categories, setCategories } =
+    //     useContext(Context);
+    // useEffect(() => {
+    //     getProducts();
+    //     getCategories();
+    // }, []);
 
-    const getProducts = () => {
-        fetchDataFromApi("/api/products?populate=*").then((res) => {
-            console.log(res);
-            setProducts(res);
-        });
-    };
-    const getCategories = () => {
-        fetchDataFromApi("/api/categories?populate=*").then((res) => {
-            setCategories(res);
-        });
-    };
+    // const getProducts = () => {
+    //     fetchDataFromApi("/api/products?populate=*").then((res) => {
+    //         console.log(res);
+    //         setProducts(res);
+    //     });
+    // };
+    // const getCategories = () => {
+    //     fetchDataFromApi("/api/categories?populate=*").then((res) => {
+    //         setCategories(res);
+    //     });
+    // };
 
     return (
         <div>

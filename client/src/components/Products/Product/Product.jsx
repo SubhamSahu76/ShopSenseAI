@@ -7,14 +7,11 @@ const Product = ({ data, id }) => {
     return (
         <div
             className="product-card"
-            onClick={() => navigate("/product/" + id)}
+            onClick={() => navigate("/product/" + (id + 1))}
         >
             <div className="thumbnail">
                 <img
-                    src={
-                        process.env.REACT_APP_STRIPE_APP_DEV_URL +
-                        data.image.data[0].attributes.url
-                    }
+                    src={`/assets/products/speaker-prod-${(id % 5 + 1)}.webp`}
                 />
             </div>
             <div className="prod-details">
