@@ -19,7 +19,7 @@ const SingleProduct = () => {
     const [quantity, setQuantity] = useState(1);
     const { id } = useParams();
     const { handleAddToCart } = useContext(Context);
-    console.log("id" , id);
+    console.log("id", id);
     const product = products[id - 1];
 
     const decrement = () => {
@@ -38,7 +38,7 @@ const SingleProduct = () => {
                 <div className="single-product-page">
                     <div className="left">
                         <img
-                            src={`/assets/products/speaker-prod-${id % 5}.webp`}
+                            src={`/assets/products/speaker-prod-${((id-1) % 5 + 1)}.webp`}
                         />
                     </div>
                     <div className="right">
